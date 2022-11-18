@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "499266136019",
+    "project_id": "signlanguager",
+    "storage_bucket": "signlanguager.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:499266136019:android:32f4dbf0ad6fd2d31fb126",
+        "android_client_info": {
+          "package_name": "com.cip039.sign_languager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "499266136019-74d1554vjo4rkk2jfa206p8khm33d4l3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDOd_0uBDfXl49SVeibTmrjJ3ZVJUtK8E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "499266136019-74d1554vjo4rkk2jfa206p8khm33d4l3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

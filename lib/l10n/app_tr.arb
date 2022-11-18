@@ -1,0 +1,6 @@
+{
+    "welcome": "Hoş Geldiniz",
+    "@welcome": {
+        "description": "Greets the user."
+    }
+}
