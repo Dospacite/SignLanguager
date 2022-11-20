@@ -29,6 +29,13 @@
             {
               "client_id": "499266136019-74d1554vjo4rkk2jfa206p8khm33d4l3.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "499266136019-cq8ckauonddeedkor0o9auf7uicsdqni.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.cip039.signLanguager"
+              }
             }
           ]
         }
