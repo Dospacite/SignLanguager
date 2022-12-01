@@ -5,8 +5,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:sign_languager/firebase_options.dart';
 
-
-Future<void> main() async{
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -19,125 +18,194 @@ class SignLanguagerApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return const MaterialApp(
-      title: 'Welcome',
-      localizationsDelegates: [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate
-      ],
-      supportedLocales: [
-        Locale('en', ''),
-        Locale('tr', ''),
-      ],
-      home: HomeScreen(),
+      home: GenderSelectScreen(),
     );
-
   }
 }
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
-
-  @override
-  State<StatefulWidget> createState() {
-    return HomeScreenState();
-  }
-
-}
-
-Future <String> loadImage() async{
-  //select the image url
-  Reference ref = FirebaseStorage
-      .instanceFor(bucket: "gs://signlanguager.appspot.com")
-      .ref()
-      .child("images/dog.jpg");
-
-  //get image url from firebase storage
-  var url = await ref.getDownloadURL();
-  return url;
-}
-
-class HomeScreenState extends State<HomeScreen> {
-
-  int _favouriteCounter = 0;
-
-  void _increaseFavourite() {
-    setState(() {
-      _favouriteCounter++;
-    });
-  }
+class GenderSelectScreen extends StatelessWidget {
+  const GenderSelectScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(5.0),
-      color: Colors.white,
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
-                    'Lake Campground',
-                    textScaleFactor: 0.4,
-                    textAlign: TextAlign.center,
+    return SafeArea(
+        child: Scaffold(
+            body: Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text("Bruh"),
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: MaterialButton(
+                  onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const FemaleSelection())),
+                  child: Image.network(
+                    "https://www.nicepng.com/png/full/208-2086851_female-icon-png.png",
                   ),
-                  Text(
-                    AppLocalizations.of(context)!.welcome,
-                    textScaleFactor: 0.4,
-                    textAlign: TextAlign.center,
-                  ),
-                ],
-              ),
-            ],
-          ),
-          Column(
-            children: [
-              MaterialButton(
-                onPressed: _increaseFavourite,
-                color: Colors.black,
-                child: const Icon(
-                  Icons.star,
-                  color: Colors.white,
                 ),
               ),
-              Text(
-                  '$_favouriteCounter'
+            ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: MaterialButton(
+                  onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const MaleSelection())),
+                  child: Image.network(
+                    "https://www.nicepng.com/png/full/41-410053_male-symbol-png.png",
+                  ),
+                ),
               ),
-            ],
-          ),
-          const DogImage(),
-        ],
-      ),
-    );
+            ),
+          ],
+        )
+      ],
+    )));
   }
 }
 
-class DogImage extends StatefulWidget {
-  const DogImage({super.key});
+class MaleSelection extends StatelessWidget {
+  const MaleSelection({super.key});
 
-  @override
-  State<StatefulWidget> createState() {
-    return DogImageState();
-  }
-
-}
-
-class DogImageState extends State<DogImage> {
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-        future: loadImage(),
-        builder: (BuildContext context, AsyncSnapshot<String> image)
-        {
-          return Image.network(image.data.toString());
-        }
+    return Scaffold(
+        body: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Center(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Expanded(
+                      child: Container(
+                        padding: const EdgeInsets.all(5.0),
+                        child: Image.network(
+                          "https://www.pngkey.com/png/full/384-3847176_human-body-outline-png.png",
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Container(
+                        padding: const EdgeInsets.all(5.0),
+                        child: Image.network(
+                            "https://e7.pngegg.com/pngimages/655/6/png-clipart-female-body-shape-human-body-silhouette-female-leg-miscellaneous-angle.png"
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            )
+        )
     );
   }
+}
+
+class FemaleSelection extends StatelessWidget {
+  const FemaleSelection({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: Container(
+                    padding: const EdgeInsets.all(5.0),
+                    child: Stack(
+                      alignment: Alignment.topCenter,
+                      children: [
+                        Image.network(
+                            "https://e7.pngegg.com/pngimages/655/6/png-clipart-female-body-shape-human-body-silhouette-female-leg-miscellaneous-angle.png"
+                        ),
+                        SizedBox(
+                          height: 70,
+                          width: 70,
+                          child: MaterialButton(
+                            color: Colors.black12,
+                            onPressed: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const HeadSelection())),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: Container(
+                    padding: const EdgeInsets.all(5.0),
+                    child: Image.network(
+                        "https://e7.pngegg.com/pngimages/655/6/png-clipart-female-body-shape-human-body-silhouette-female-leg-miscellaneous-angle.png"
+                    ),
+                    )
+                  ),
+              ],
+            ),
+          ),
+        )
+      )
+    );
+  }
+}
+
+class HeadSelection extends StatelessWidget {
+  const HeadSelection({super.key});
+
+
+  @override
+  Widget build(BuildContext context) {
+    return const SafeArea(
+        child: Scaffold(
+          body: Center(
+            child: HeadView(),
+          ),
+        ),
+    );
+  }
+
+}
+
+class HeadView extends StatelessWidget {
+  const HeadView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Image.network("https://www.easydrawingtips.com/wp-content/uploads/2018/05/female_face_drawing.png"),
+        SizedBox(
+          width: 50,
+          height: 50,
+          child: MaterialButton(
+            onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const HeadSelection())),
+          ),
+        ),
+      ]
+    );
+  }
+
 }
